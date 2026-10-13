@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Map supplied analyst activity to offline ATT&CK coverage and Navigator layers.",
   "type": "module",
+  "bin": {"attack-coverage-mapper": "./bin/attack-coverage-mapper.mjs"},
   "engines": {"node": ">=22"},
   "scripts": {
     "lint": "node tools/lint.mjs",

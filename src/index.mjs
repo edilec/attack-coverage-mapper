@@ -7,7 +7,7 @@ import { buildReport,issue } from './report.mjs'
 export {createBudget} from './limits.mjs'
 export {TOOL_ID,exitCodeFor,serializeReport,formatSummary} from './report.mjs'
 const inputRule=code=>({'byte-limit':'limit-bytes-exceeded','depth-limit':'limit-depth-exceeded','node-limit':'limit-nodes-exceeded',unreadable:'input-unreadable','not-file':'input-unreadable'}[code]??'input-invalid')
-export function analyzeReadResults({datasetRead,activityRead,budget=createBudget(performance.now)}) {
+export function analyzeReadResults({datasetRead,activityRead,budget=createBudget(()=>performance.now())}) {
   const findings=[]
   let metadata={domain:null,version:null,sourceUrl:null,sha256:null,validationScope:'supplied-subset',usable:false}
   let dataset=null,compiled=null,mapped={coverage:[],tacticCoverage:[],mappedActivities:0,totals:{}}

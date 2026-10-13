@@ -37,3 +37,8 @@ test('collection incompleteness cannot disappear behind a successful mapper resu
   assert.equal(r.status,'incomplete');assert.equal(r.summary.mappedActivities,2)
   assert.ok(r.findings.some(f=>f.ruleId==='inventory-incomplete'))
 })
+test('default clock uses the real monotonic runtime receiver',()=>{
+  const {dataset,activities}=documents()
+  const r=analyze({datasetBytes:bytes(dataset),activityBytes:bytes(activities)})
+  assert.equal(r.status,'pass');assert.deepEqual(r.findings,[])
+})
