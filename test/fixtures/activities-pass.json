@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1",
+  "inventoryComplete": true,
+  "sourceNotes": [
+    {
+      "ref": "private-note-a",
+      "available": true,
+      "note": "PRIVATE_NOTE_SENTINEL"
+    },
+    {
+      "ref": "private-note-b",
+      "available": true
+    }
+  ],
+  "activities": [
+    {
+      "sourceNoteRef": "private-note-a",
+      "techniqueIds": [
+        "T0001"
+      ],
+      "tactic": "execution",
+      "detection": "detected"
+    },
+    {
+      "sourceNoteRef": "private-note-b",
+      "techniqueIds": [
+        "T0001.001"
+      ],
+      "detection": "detected"
+    }
+  ]
+}
