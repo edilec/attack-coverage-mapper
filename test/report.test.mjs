@@ -42,3 +42,10 @@ test('default clock uses the real monotonic runtime receiver',()=>{
   const r=analyze({datasetBytes:bytes(dataset),activityBytes:bytes(activities)})
   assert.equal(r.status,'pass');assert.deepEqual(r.findings,[])
 })
+test('unexpected library failures propagate rather than being relabeled as bad evidence',()=>{
+  const {dataset,activities}=documents()
+  for(const stopAt of [1,3]) {
+    let calls=0;const error=Error('owned-test-failure'),budget={check(){if(++calls===stopAt)throw error}}
+    assert.throws(()=>analyze({datasetBytes:bytes(dataset),activityBytes:bytes(activities),budget}),e=>e===error)
+  }
+})

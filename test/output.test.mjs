@@ -42,6 +42,19 @@ test('exclusive open refuses a planted final entry after preflight',async()=>fix
   const pre=await preflightOutput(out,{inputs:[input]});await symlink(input,join(out,'coverage.json'))
   await assert.rejects(writeArtifacts(pre,artifacts,{inputs:[input],budget:createBudget(()=>0)}),OutputError)
 }))
+test('exclusive creation preserves an unrelated regular file planted after preflight',async()=>fixture(async({out,input})=>{
+  const pre=await preflightOutput(out,{inputs:[input]});await writeFile(join(out,'coverage.json'),'PLANTED')
+  await assert.rejects(writeArtifacts(pre,artifacts,{inputs:[input],budget:createBudget(()=>0)}),OutputError)
+  assert.equal(await readFile(join(out,'coverage.json'),'utf8'),'PLANTED')
+  assert.deepEqual(await readdir(out),['coverage.json'])
+}))
+test('invalid artifact batches are refused before creating any output file',async()=>fixture(async({out,input})=>{
+  const pre=await preflightOutput(out,{inputs:[input]})
+  for(const batch of [null,[artifacts[0],artifacts[0]],[{name:'coverage.json',bytes:'text'}]]) {
+    await assert.rejects(writeArtifacts(pre,batch,{inputs:[input],budget:createBudget(()=>0)}),OutputError)
+    assert.deepEqual(await readdir(out),[])
+  }
+}))
 test('second-write failure leaves honest partial new files without touching inputs',async()=>fixture(async({out,input})=>{
   const pre=await preflightOutput(out,{inputs:[input]});let count=0
   const openFile=async(...args)=>{if(++count===2)throw Object.assign(Error('secret-path'),{code:'ENOSPC'});return open(...args)}

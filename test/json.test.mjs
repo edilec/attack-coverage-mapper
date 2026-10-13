@@ -4,7 +4,7 @@ import { mkdtemp, writeFile, mkdir, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createBudget } from '../src/limits.mjs'
-import { parseJsonBytes, readInput, sha256 } from '../src/json.mjs'
+import { parseJsonBytes, parseUniqueJson, readInput, sha256 } from '../src/json.mjs'
 const parse = text => parseJsonBytes(Buffer.from(text), createBudget(() => 0))
 test('strict UTF-8 accepts literal replacement but rejects invalid bytes beside it', () => {
   assert.deepEqual(parse('{"note":"\uFFFD"}'), {note:'\uFFFD'})
@@ -58,4 +58,26 @@ test('bounded regular-file reader records identity and distinguishes missing/dir
     await mkdir(join(dir,'folder'))
     await assert.rejects(read(join(dir,'folder')),e => e.code === 'not-file')
   } finally {await rm(dir,{recursive:true,force:true})}
+})
+test('parser helper refuses wrong input types and invalid configured limits',()=>{
+  assert.throws(()=>parseUniqueJson({}),e=>e.code==='invalid-text')
+  assert.throws(()=>parseJsonBytes('{}',createBudget(()=>0)),e=>e.code==='invalid-text')
+  for(const key of ['maxDepth','maxNodes'])for(const value of [-1,1.5,NaN])assert.throws(()=>parseUniqueJson('{}',{[key]:value}),e=>e.code==='invalid-limit')
+  assert.deepEqual(parseUniqueJson('{}'),{})
+  assert.doesNotThrow(()=>parseUniqueJson('[[null]]',{maxDepth:2}))
+  assert.throws(()=>parseUniqueJson('[[null]]',{maxDepth:1}),e=>e.code==='depth-limit')
+  assert.equal(parseUniqueJson('0e100000000'),0)
+})
+test('escaped delimiter text inside strings does not consume nesting budget',()=>{
+  const note='\\"'+ '['.repeat(17)+'\\'+']'.repeat(17)
+  assert.deepEqual(parse(JSON.stringify({note})),{note})
+  assert.deepEqual(parse(JSON.stringify(Array.from({length:17},()=>[]))),Array.from({length:17},()=>[]))
+  let checks=0
+  const budget={check(){if(++checks===3)throw Error('stopped')}}
+  assert.throws(()=>parseJsonBytes(Buffer.from(JSON.stringify({note:'a'.repeat(20000)})),budget),/stopped/u)
+})
+test('large lexical walks check the cooperative budget before their final checkpoint',()=>{
+  let checks=0
+  parseUniqueJson(JSON.stringify(Array(3000).fill(null)),{budget:{check(){checks++}}})
+  assert.equal(checks,4)
 })

@@ -36,6 +36,11 @@ test('mixed known observations retain counts with an observed fraction score',()
   assert.equal(row.metadata.find(m=>m.name==='activity-ordinals').value,'1;2;3')
   assert.equal(row.metadata.find(m=>m.name==='not-detected').value,'1')
 })
+test('one event of each known outcome still uses the mixed color',()=>{
+  const {dataset,activities}=documents();activities.activities=['detected','not-detected'].map(detection=>({...activities.activities[0],detection}))
+  const row=renderNavigator(evaluate(dataset,activities),{},budget()).techniques[0]
+  assert.equal(row.color,'#6a1b9a');assert.equal(row.score,50)
+})
 test('unknown is amber and every incomplete layer score is omitted',()=>{
   const {dataset,activities}=documents();activities.activities[0].detection='unknown'
   const layer=renderNavigator(evaluate(dataset,activities),{},budget())
@@ -70,7 +75,7 @@ test('metadata follows code-unit ordering through the artifact helper',()=>{
   assert.deepEqual(one,two)
   assert.deepEqual(renderNavigator(r,{},budget()).metadata.map(m=>m.name),['color-semantics','dataset-sha256','evidence-semantics','report-status','score-semantics','validation-scope'])
 })
-test('emitted tactic order uses legal strings whose collation order differs',()=>{
+test('emitted tactic order retains the specified lexical order',()=>{
   const {dataset,activities}=documents();dataset.techniques[0].tactics=['aa','a-b','a0']
   activities.activities=[{sourceNoteRef:'private-note-a',techniqueIds:['T0001'],detection:'detected'}]
   const r=evaluate(dataset,activities)

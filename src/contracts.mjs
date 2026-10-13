@@ -63,11 +63,13 @@ export function compileActivities(raw,budget) {
   const refs=new Map()
   for(let i=0;i<raw.sourceNotes.length;i++) {
     budget.check('@activities');const note=raw.sourceNotes[i],p=`/sourceNotes/${i}`
+    if(object(note) && Object.hasOwn(note,'ref') && isSafeField(note.ref,LIMITS.ref)) {
+      if(!refs.has(note.ref)) refs.set(note.ref,[])
+      refs.get(note.ref).push(i)
+    }
     if(!keys(note,['ref','available','note'],['ref','available'])) {add('note-evidence-incomplete',p);continue}
     if(!isSafeField(note.ref,LIMITS.ref)) {add('note-evidence-incomplete',p+'/ref');continue}
     if(typeof note.available!=='boolean' || (Object.hasOwn(note,'note') && (typeof note.note!=='string' || note.note.length>LIMITS.note))) {add('note-evidence-incomplete',p);continue}
-    if(!refs.has(note.ref)) refs.set(note.ref,[])
-    refs.get(note.ref).push(i)
     notes.set(note.ref,{ordinal:i+1,available:note.available})
   }
   for(const [ref,indexes] of refs) if(indexes.length>1) {

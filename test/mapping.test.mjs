@@ -40,7 +40,7 @@ test('optional tactics expand display without inflating global counts',()=>{
   const r=evaluate(dataset,activities);assert.equal(r.summary.mappedActivities,2);assert.equal(r.summary.techniqueMappings,2)
   assert.deepEqual(r.tacticCoverage.map(x=>[x.tactic,x.detected,x.notDetected]),[['discovery',1,0],['execution',1,1]])
 })
-test('legal tactic slugs distinguish code-unit order from collation in real coverage',()=>{
+test('legal tactic slugs use the specified lexical order in real coverage',()=>{
   const {dataset,activities}=documents();dataset.techniques[0].tactics=['aa','a-b','a0']
   activities.activities=[{sourceNoteRef:'private-note-a',techniqueIds:['T0001'],detection:'detected'}]
   const r=evaluate(dataset,activities)
@@ -73,4 +73,13 @@ test('prose never invents a mapping and empty complete inventory is incomplete',
   const {dataset,activities}=documents();activities.sourceNotes[0].note='T0001.001';delete activities.activities[0].techniqueIds
   let r=evaluate(dataset,activities);assert.equal(r.status,'incomplete');assert.equal(r.summary.mappedActivities,1)
   activities.activities=[];r=evaluate(dataset,activities);assert.equal(exitCodeFor(r),2);assert.ok(r.findings.some(f=>f.ruleId==='no-activities'))
+})
+test('each unknown ID is located and evidence note ordinals sort numerically',()=>{
+  const {dataset,activities}=documents()
+  activities.activities=[{...activities.activities[0],techniqueIds:['T9998','T9999']}]
+  let r=evaluate(dataset,activities)
+  assert.deepEqual(r.findings.filter(f=>f.ruleId==='technique-unknown').map(f=>f.location.pointer),['/activities/0/techniqueIds/0','/activities/0/techniqueIds/1'])
+  activities.activities=[{...activities.activities[0],techniqueIds:['T0001'],sourceNoteRef:'private-note-b'},{...activities.activities[0],techniqueIds:['T0001'],sourceNoteRef:'private-note-a'}]
+  r=evaluate(dataset,activities)
+  assert.deepEqual(r.coverage[0].noteOrdinals,[1,2]);assert.deepEqual(r.coverage[0].events.map(e=>e.noteOrdinal),[2,1])
 })

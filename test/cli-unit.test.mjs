@@ -94,3 +94,35 @@ test('cyclic unreadable input is evidence failure with a report, never bad-usage
     assert.equal(stderr.includes('Invalid command configuration'),false)
   }finally{await rm(dir,{recursive:true,force:true})}
 })
+test('malformed duplicate notes cannot contribute detection evidence or Navigator techniques',async()=>{
+  for(const invalid of [{available:'false'},{note:123},{extra:true}])for(const reverse of [false,true]) {
+    const dir=await mkdtemp(join(tmpdir(),'coverage-ambiguous-note-'))
+    try {
+      const {dataset,activities}=documents(),valid=activities.sourceNotes[0],malformed={...valid,...invalid}
+      activities.sourceNotes=reverse?[malformed,valid]:[valid,malformed]
+      activities.activities=[activities.activities[0]]
+      const d=join(dir,'d'),a=join(dir,'a'),out=join(dir,'out')
+      await writeFile(d,JSON.stringify(dataset));await writeFile(a,JSON.stringify(activities))
+      let stdout=''
+      const code=await runCli(['--dataset',d,'--activities',a,'--out-dir',out],{stdout:s=>stdout+=s,stderr:()=>{},now:()=>0})
+      const report=JSON.parse(stdout),{readFile}=await import('node:fs/promises')
+      assert.equal(code,2);assert.equal(report.status,'incomplete')
+      assert.equal(report.summary.mappedActivities,0);assert.equal(report.summary.detectedActivities,0)
+      assert.deepEqual(report.coverage,[])
+      assert.deepEqual(JSON.parse(await readFile(join(out,'navigator-layer.json'),'utf8')).techniques,[])
+    }finally{await rm(dir,{recursive:true,force:true})}
+  }
+})
+test('unexpected preflight failures produce one incomplete execution report',async()=>{
+  const dir=await mkdtemp(join(tmpdir(),'coverage-preflight-error-'))
+  try {
+    const {dataset,activities}=documents(),d=join(dir,'d'),a=join(dir,'a'),out=join(dir,'out')
+    await writeFile(d,JSON.stringify(dataset));await writeFile(a,JSON.stringify(activities))
+    let stdout='',stderr=''
+    const io={readInput,preflightOutput:async()=>{throw Error('PRIVATE_PATH')},writeArtifacts}
+    const code=await runCli(['--dataset',d,'--activities',a,'--out-dir',out],{stdout:s=>stdout+=s,stderr:s=>stderr+=s,now:()=>0,io})
+    assert.equal(code,2);assert.equal(JSON.parse(stdout).status,'incomplete')
+    assert.ok(JSON.parse(stdout).findings.some(f=>f.ruleId==='execution-failed'))
+    assert.equal((stdout+stderr).includes('PRIVATE_PATH'),false)
+  }finally{await rm(dir,{recursive:true,force:true})}
+})

@@ -70,6 +70,29 @@ test('note ambiguity and private unusable references remain incomplete and locat
     const r=ca(a);assert.ok(r.findings.some(f=>f.ruleId==='note-evidence-incomplete'&&f.location.pointer==='/sourceNotes/0/ref'))
   }
 })
+test('malformed duplicates make every safely identified note occurrence unusable in either order',()=>{
+  for(const invalid of [{available:'false'},{note:123},{extra:true}])for(const reverse of [false,true]) {
+    const {activities}=documents(),valid=activities.sourceNotes[0],malformed={...valid,...invalid}
+    activities.sourceNotes=reverse?[malformed,valid,activities.sourceNotes[1]]:[valid,malformed,activities.sourceNotes[1]]
+    const result=ca(activities)
+    assert.equal(result.ambiguousRefs.has(valid.ref),true)
+    assert.equal(result.notes.has(valid.ref),false)
+    assert.deepEqual(result.notes.get('private-note-b'),{ordinal:3,available:true})
+    for(const i of [0,1])assert.ok(result.findings.some(f=>f.ruleId==='note-evidence-incomplete'&&f.location.pointer===`/sourceNotes/${i}/ref`))
+  }
+})
+test('invalid notes do not hide later valid notes and every malformed technique is located',()=>{
+  for(const invalid of [{extra:true,ref:'other',available:true},{ref:'',available:true},{ref:'other',available:'true'}]) {
+    const {activities}=documents();activities.sourceNotes.unshift(invalid)
+    const result=ca(activities)
+    assert.equal(result.notes.get('private-note-a').ordinal,2)
+    assert.equal(result.notes.get('private-note-b').ordinal,3)
+    assert.ok(result.findings.some(f=>f.ruleId==='note-evidence-incomplete'))
+  }
+  const {dataset}=documents();dataset.techniques.unshift({id:'bad'});dataset.techniques.push({id:'also-bad'})
+  assert.deepEqual(cd(dataset).findings.filter(f=>f.ruleId==='dataset-invalid').map(f=>f.location.pointer),['/techniques/0','/techniques/5'])
+  dataset.techniques={};assert.ok(cd(dataset).findings.some(f=>f.ruleId==='dataset-invalid'&&f.location.pointer==='/techniques'))
+})
 test('reference, note and technique-list bounds accept N and refuse N+1',()=>{
   const {activities}=documents();activities.sourceNotes[0].ref='a'.repeat(128);activities.sourceNotes[0].note='a'.repeat(4096)
   activities.activities[0].techniqueIds=Array.from({length:32},(_,i)=>`T${String(i).padStart(4,'0')}`)
