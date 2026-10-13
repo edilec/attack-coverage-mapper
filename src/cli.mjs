@@ -5,8 +5,8 @@ import { readInput,InputError } from './json.mjs'
 import { analyzeReadResults } from './index.mjs'
 import { buildReport,issue,serializeReport,formatSummary,exitCodeFor } from './report.mjs'
 import { ConfigError,renderArtifacts } from './exports.mjs'
-import { preflightOutput,writeArtifacts } from './output.mjs'
-import { DestinationError } from './write-guard.mjs'
+import { preflightOutput,writeArtifacts,OutputError } from './output.mjs'
+import { DestinationError,InputTargetError } from './write-guard.mjs'
 const HELP=`attack-coverage-mapper --dataset FILE --activities FILE --out-dir DIR [--layer-version 4.4]
 Offline Node ESM tool. Only normalized dataset schema 1 and activities schema 1 are supported.
 --help alone prints this usage. No network, automatic inference, raw STIX adapter, or provider lookup.
@@ -41,17 +41,21 @@ export async function runCli(argv,{stdout,stderr,now=()=>performance.now(),io=de
     const options=parseArgs(argv)
     if(options.help){stderr(HELP);return 0}
     const budget=createBudget(now),inputs=[resolve(options.dataset),resolve(options.activities)],identities=[]
-    const read=async(path)=>{
+    const read=async(path,file)=>{
       try {
-        const result=await io.readInput(path,budget)
+        const result=await io.readInput(path,{check:()=>budget.check(file)})
         inputs.push(result.realPath);identities.push(result.identity)
         return {ok:true,bytes:result.bytes}
       }catch(e){if(!(e instanceof InputError))throw e;return {ok:false,code:e.code}}
     }
-    const datasetRead=await read(options.dataset),activityRead=await read(options.activities)
+    const datasetRead=await read(options.dataset,'@dataset'),activityRead=await read(options.activities,'@activities')
     let preflight
     try{preflight=await io.preflightOutput(options.outDir,{inputs,identities})}
-    catch(e){if(e instanceof DestinationError)throw new ConfigError('unsafe-destination');throw e}
+    catch(e){
+      if(e instanceof InputTargetError){report=analyzeReadResults({datasetRead,activityRead,budget});throw new OutputError()}
+      if(e instanceof DestinationError)throw new ConfigError('unsafe-destination')
+      throw e
+    }
     report=analyzeReadResults({datasetRead,activityRead,budget})
     const artifacts=renderArtifacts(report,{layerVersion:options.layerVersion},budget)
     await io.writeArtifacts(preflight,artifacts,{inputs,budget})

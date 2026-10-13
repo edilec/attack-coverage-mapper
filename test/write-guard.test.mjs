@@ -36,3 +36,7 @@ test('symlink cycles and uncertain inspections are refusals',async()=>fixture(as
   await assert.rejects(assertWritableDestination(target,{root,inputs:[input,a]}),DestinationError)
   await assert.rejects(assertWritableDestination(join(root,'x'.repeat(300)),{root,inputs:[input]}),DestinationError)
 }))
+test('case variants of missing named input targets cannot become new exports',async()=>fixture(async({dir,root,input,target})=>{
+  const missing=join(dir,'missing-dataset');await symlink(join(root,'COVERAGE.JSON'),missing)
+  await assert.rejects(assertWritableDestination(target,{root,inputs:[input,missing]}),DestinationError)
+}))

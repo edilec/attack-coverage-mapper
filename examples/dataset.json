@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1",
+  "domain": "enterprise",
+  "version": "17.0",
+  "sourceUrl": "https://attack.mitre.org/",
+  "techniques": [
+    {
+      "id": "T0001",
+      "parentId": null,
+      "revoked": false,
+      "deprecated": false,
+      "tactics": [
+        "execution",
+        "discovery"
+      ]
+    },
+    {
+      "id": "T0001.001",
+      "parentId": "T0001",
+      "revoked": false,
+      "deprecated": false,
+      "tactics": [
+        "execution"
+      ]
+    },
+    {
+      "id": "T0002",
+      "parentId": null,
+      "revoked": true,
+      "deprecated": false,
+      "tactics": [
+        "execution"
+      ]
+    },
+    {
+      "id": "T0003",
+      "parentId": null,
+      "revoked": false,
+      "deprecated": true,
+      "tactics": [
+        "execution"
+      ]
+    }
+  ]
+}

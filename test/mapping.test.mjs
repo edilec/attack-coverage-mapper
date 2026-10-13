@@ -40,6 +40,12 @@ test('optional tactics expand display without inflating global counts',()=>{
   const r=evaluate(dataset,activities);assert.equal(r.summary.mappedActivities,2);assert.equal(r.summary.techniqueMappings,2)
   assert.deepEqual(r.tacticCoverage.map(x=>[x.tactic,x.detected,x.notDetected]),[['discovery',1,0],['execution',1,1]])
 })
+test('legal tactic slugs distinguish code-unit order from collation in real coverage',()=>{
+  const {dataset,activities}=documents();dataset.techniques[0].tactics=['aa','a-b','a0']
+  activities.activities=[{sourceNoteRef:'private-note-a',techniqueIds:['T0001'],detection:'detected'}]
+  const r=evaluate(dataset,activities)
+  assert.equal(r.status,'pass');assert.deepEqual(r.tacticCoverage.map(x=>x.tactic),['a-b','a0','aa'])
+})
 for(const [id,rule] of [['T9999','technique-unknown'],['T0002','technique-revoked'],['T0003','technique-deprecated']])test('mapping refusal '+rule,()=>{
   const {dataset,activities}=documents();activities.activities=[{...activities.activities[0],techniqueIds:['T0001',id]}]
   const r=evaluate(dataset,activities);assert.equal(r.status,'incomplete');assert.equal(r.summary.mappedActivities,0);assert.deepEqual(r.coverage,[])

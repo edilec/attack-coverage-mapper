@@ -50,6 +50,13 @@ test('known detected and not-detected styles stay distinct at 100 and 0',()=>{
   const layer=renderNavigator(evaluate(dataset,activities),{},budget())
   assert.deepEqual(layer.techniques.map(t=>[t.color,t.score]),[['#2e7d32',100],['#c62828',0]])
 })
+test('every display-style metadata label agrees with its retained observations',()=>{
+  for(const [detections,want] of [[['detected'],'detected'],[['not-detected'],'not-detected'],[['unknown'],'unknown'],[['detected','not-detected'],'mixed-known']]) {
+    const {dataset,activities}=documents();activities.activities=detections.map(detection=>({...activities.activities[0],detection}))
+    const layer=renderNavigator(evaluate(dataset,activities),{},budget())
+    assert.equal(layer.techniques[0].metadata.find(m=>m.name==='display-style').value,want)
+  }
+})
 test('unusable version has no invented layer; unsupported format is config failure',()=>{
   const {dataset,activities}=documents();delete dataset.version
   const r=evaluate(dataset,activities);assert.equal(renderNavigator(r,{},budget()),null)
@@ -62,6 +69,12 @@ test('metadata follows code-unit ordering through the artifact helper',()=>{
   const one=renderArtifacts(r,{},budget()),two=renderArtifacts(r,{},budget())
   assert.deepEqual(one,two)
   assert.deepEqual(renderNavigator(r,{},budget()).metadata.map(m=>m.name),['color-semantics','dataset-sha256','evidence-semantics','report-status','score-semantics','validation-scope'])
+})
+test('emitted tactic order uses legal strings whose collation order differs',()=>{
+  const {dataset,activities}=documents();dataset.techniques[0].tactics=['aa','a-b','a0']
+  activities.activities=[{sourceNoteRef:'private-note-a',techniqueIds:['T0001'],detection:'detected'}]
+  const r=evaluate(dataset,activities)
+  assert.deepEqual(renderNavigator(r,{},budget()).techniques.map(t=>t.tactic),['a-b','a0','aa'])
 })
 test('export bytes allow N and reject N+1 rather than truncate',()=>{
   assert.doesNotThrow(()=>assertExportBytes(Buffer.alloc(33554432)))

@@ -40,18 +40,22 @@ test('exact-byte SHA-256 is stable and whitespace matters', () => {
   assert.equal(sha256(Buffer.from('abc')),'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad')
   assert.notEqual(sha256(Buffer.from('{}')),sha256(Buffer.from('{}\n')))
 })
+test('decimal precision and very long underflow exponents are refused before rounding or BigInt work',()=>{
+  for(const text of ['0.100000000000000000001','1e-1000000'])assert.throws(()=>parse(text),e=>e.code==='numeric-precision')
+})
 test('bounded regular-file reader records identity and distinguishes missing/directory/large files',async () => {
   const dir=await mkdtemp(join(tmpdir(),'coverage-json-'))
   try {
+    const read=path=>{let tick=0;return readInput(path,createBudget(()=>++tick))}
     const file=join(dir,'input.json'); await writeFile(file,'{}')
-    const result=await readInput(file,createBudget(() => 0))
+    const result=await read(file)
     assert.equal(Buffer.from(result.bytes).toString(),'{}'); assert.ok(result.identity.ino > 0)
     await writeFile(file,Buffer.alloc(8388608,32))
-    assert.equal((await readInput(file,createBudget(() => 0))).bytes.length,8388608)
+    assert.equal((await read(file)).bytes.length,8388608)
     await writeFile(file,Buffer.alloc(8388609,32))
-    await assert.rejects(readInput(file,createBudget(() => 0)),e => e.code === 'byte-limit')
-    await assert.rejects(readInput(join(dir,'missing'),createBudget(() => 0)),e => e.code === 'unreadable')
+    await assert.rejects(read(file),e => e.code === 'byte-limit')
+    await assert.rejects(read(join(dir,'missing')),e => e.code === 'unreadable')
     await mkdir(join(dir,'folder'))
-    await assert.rejects(readInput(join(dir,'folder'),createBudget(() => 0)),e => e.code === 'not-file')
+    await assert.rejects(read(join(dir,'folder')),e => e.code === 'not-file')
   } finally {await rm(dir,{recursive:true,force:true})}
 })

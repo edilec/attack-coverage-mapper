@@ -10,6 +10,8 @@ export class DestinationError extends Error {
     this.name = 'DestinationError'
   }
 }
+/** An input target cannot be resolved sufficiently to protect an export. */
+export class InputTargetError extends DestinationError {}
 
 async function namedInputTarget(path, label) {
   let current = resolve(path)
@@ -20,19 +22,19 @@ async function namedInputTarget(path, label) {
       parent = await realpath(dirname(current))
     } catch (error) {
       if (error.code === 'ENOENT') return current
-      throw new DestinationError(`${label} input path could not be inspected.`)
+      throw new InputTargetError(`${label} input path could not be inspected.`)
     }
     const named = resolve(parent, basename(current))
-    if (seen.has(named)) throw new DestinationError(`${label} input path has a symbolic-link cycle.`)
+    if (seen.has(named)) throw new InputTargetError(`${label} input path has a symbolic-link cycle.`)
     seen.add(named)
     try {
       current = resolve(parent, await readlink(named))
     } catch (error) {
       if (error.code === 'EINVAL' || error.code === 'ENOENT') return named
-      throw new DestinationError(`${label} input path could not be inspected.`)
+      throw new InputTargetError(`${label} input path could not be inspected.`)
     }
   }
-  throw new DestinationError(`${label} input path has too many symbolic links.`)
+  throw new InputTargetError(`${label} input path has too many symbolic links.`)
 }
 
 /**
@@ -122,8 +124,19 @@ export async function assertWritableDestination(destination, options = {}) {
 
   const namedDestination = resolve(parent, basename(target))
   for (const input of inputs) {
-    if (await namedInputTarget(input, label) === namedDestination) {
+    const inputTarget = await namedInputTarget(input, label)
+    if (inputTarget === namedDestination) {
       throw new DestinationError(`${label} names an input path.`)
+    }
+    // A missing input's case variant can be materialized by creating this
+    // destination on a case-insensitive filesystem. No inode exists yet.
+    // Existing distinct files still use the identity check below.
+    if (dirname(inputTarget) === parent && basename(inputTarget).toLowerCase() === basename(target).toLowerCase()) {
+      try {
+        await lstat(inputTarget)
+      } catch {
+        throw new DestinationError('A missing input target conflicts with this output name.')
+      }
     }
   }
 

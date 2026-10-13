@@ -13,7 +13,7 @@ export function analyzeReadResults({datasetRead,activityRead,budget=createBudget
   let dataset=null,compiled=null,mapped={coverage:[],tacticCoverage:[],mappedActivities:0,totals:{}}
   const parse=(read,file)=>{
     if(!read.ok) {findings.push(issue(inputRule(read.code),file));return null}
-    try {return {raw:parseJsonBytes(read.bytes,budget)}} catch(e) {
+    try {return {raw:parseJsonBytes(read.bytes,{check:()=>budget.check(file)})}} catch(e) {
       if(!(e instanceof InputError)) throw e
       findings.push(issue(inputRule(e.code),file));return null
     }

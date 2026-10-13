@@ -3,11 +3,30 @@
   "version": "0.1.0",
   "description": "Map supplied analyst activity to offline ATT&CK coverage and Navigator layers.",
   "type": "module",
-  "bin": {"attack-coverage-mapper": "./bin/attack-coverage-mapper.mjs"},
-  "engines": {"node": ">=22"},
+  "bin": {
+    "attack-coverage-mapper": "./bin/attack-coverage-mapper.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "lint": "node tools/lint.mjs",
     "test": "node --import ./test/support/deny-network.mjs --test",
     "check": "npm run lint && npm test"
+  },
+  "exports": "./src/index.mjs",
+  "license": "MIT",
+  "files": [
+    "bin/",
+    "src/",
+    "docs/",
+    "examples/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edilec/attack-coverage-mapper.git"
   }
 }
