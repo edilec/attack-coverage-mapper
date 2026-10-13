@@ -1,0 +1,12 @@
+{
+  "name": "attack-coverage-mapper",
+  "version": "0.1.0",
+  "description": "Map supplied analyst activity to offline ATT&CK coverage and Navigator layers.",
+  "type": "module",
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "lint": "node tools/lint.mjs",
+    "test": "node --import ./test/support/deny-network.mjs --test",
+    "check": "npm run lint && npm test"
+  }
+}
