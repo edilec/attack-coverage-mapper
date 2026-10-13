@@ -1,0 +1,110 @@
+{
+  "complete": true,
+  "scope": "Owning selectors followed by all compact in-process selectors for silent candidates; no per-mutant subprocess CLI suite",
+  "sourceSha256": {
+    "src/json.mjs": "d0c9db796f71d085dcc2d23f555fbf4ffa76d8a882f7f7f2c5b11e7862126e97"
+  },
+  "selectors": {
+    "limits": [
+      "text-report",
+      "report"
+    ],
+    "text": [
+      "text-report",
+      "exports"
+    ],
+    "report": [
+      "text-report",
+      "report",
+      "mapping",
+      "docs-package",
+      "cli-unit"
+    ],
+    "json": [
+      "json",
+      "report"
+    ],
+    "contracts": [
+      "contracts",
+      "mapping",
+      "report"
+    ],
+    "mapping": [
+      "mapping",
+      "report"
+    ],
+    "index": [
+      "mapping",
+      "report",
+      "cli-unit"
+    ],
+    "exports": [
+      "exports",
+      "cli-unit"
+    ],
+    "write-guard": [
+      "write-guard",
+      "output"
+    ],
+    "output": [
+      "output",
+      "cli-unit"
+    ],
+    "cli": [
+      "cli-unit"
+    ],
+    "attack-coverage-mapper": [
+      "cli-unit"
+    ]
+  },
+  "compactSelectors": [
+    "json",
+    "text-report",
+    "contracts",
+    "mapping",
+    "report",
+    "exports",
+    "write-guard",
+    "output",
+    "cli-unit",
+    "docs-package"
+  ],
+  "timeoutSeconds": 30,
+  "entries": [
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 140,
+      "start": 4468,
+      "end": 4479,
+      "original": "if(c==='\"')",
+      "replacement": "if(false)",
+      "index": 154,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 140,
+      "start": 4496,
+      "end": 4504,
+      "original": "continue",
+      "replacement": "break",
+      "index": 155,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    }
+  ],
+  "counts": {
+    "killed": 2
+  },
+  "sourceRevision": "68997cf",
+  "tests": "169-test suite plus quoted-prefix depth assertions"
+}

@@ -1,0 +1,1700 @@
+{
+  "complete": true,
+  "scope": "Owning selectors followed by all compact in-process selectors for silent candidates; no per-mutant subprocess CLI suite",
+  "sourceSha256": {
+    "src/cli.mjs": "af571591b8ce8c61e251fd751ffdd17ec719d5ebefefd0339a2417083fb41a18",
+    "src/exports.mjs": "6e0df6fcdeb1a87b96f31dc19c16f2cb4159d31650aa92cd083e2aa8aebaabfb",
+    "src/index.mjs": "6df15e82d3c23978d4800acc71b827a24ed37190638ec8638e99aeafa078cea9",
+    "src/json.mjs": "d0c9db796f71d085dcc2d23f555fbf4ffa76d8a882f7f7f2c5b11e7862126e97",
+    "src/mapping.mjs": "da8a16fc586c831ec0885125eaf679b791b7e21ddfe90cfc16b1d2f5fb126bb5",
+    "src/output.mjs": "0fd81b1a8853eecbbccb1c3ab0b9fc9aac6e1274d05425d2864eb71ef51e042a",
+    "src/report.mjs": "5bf63d3ec5ec5572e0baab3eed17a9acce04011004d936255aa5aeb90eb7f57d",
+    "src/text.mjs": "65de6c156c6de4ee9331734d160ccb26f51796fab8ebc6afe21587b96fbae6e5",
+    "src/write-guard.mjs": "7277d3b6fe140f7853142cf59bf556118538c645f74f3f6ee30816805e45efd6"
+  },
+  "selectors": {
+    "limits": [
+      "text-report",
+      "report"
+    ],
+    "text": [
+      "text-report",
+      "exports"
+    ],
+    "report": [
+      "text-report",
+      "report",
+      "mapping",
+      "docs-package",
+      "cli-unit"
+    ],
+    "json": [
+      "json",
+      "report"
+    ],
+    "contracts": [
+      "contracts",
+      "mapping",
+      "report"
+    ],
+    "mapping": [
+      "mapping",
+      "report"
+    ],
+    "index": [
+      "mapping",
+      "report",
+      "cli-unit"
+    ],
+    "exports": [
+      "exports",
+      "cli-unit"
+    ],
+    "write-guard": [
+      "write-guard",
+      "output"
+    ],
+    "output": [
+      "output",
+      "cli-unit"
+    ],
+    "cli": [
+      "cli-unit"
+    ],
+    "attack-coverage-mapper": [
+      "cli-unit"
+    ]
+  },
+  "compactSelectors": [
+    "json",
+    "text-report",
+    "contracts",
+    "mapping",
+    "report",
+    "exports",
+    "write-guard",
+    "output",
+    "cli-unit",
+    "docs-package"
+  ],
+  "timeoutSeconds": 30,
+  "entries": [
+    {
+      "category": "guard",
+      "file": "src/cli.mjs",
+      "line": 57,
+      "start": 3837,
+      "end": 3842,
+      "original": "throw",
+      "replacement": "return",
+      "index": 17,
+      "outcome": "killed",
+      "selector": [
+        "cli-unit"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/exports.mjs",
+      "line": 30,
+      "start": 1272,
+      "end": 1273,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 72,
+      "outcome": "killed",
+      "selector": [
+        "exports",
+        "cli-unit"
+      ]
+    },
+    {
+      "category": "semantic",
+      "file": "src/exports.mjs",
+      "line": 31,
+      "start": 1379,
+      "end": 1394,
+      "original": "row.unknown===0",
+      "replacement": "true",
+      "index": 79,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/index.mjs",
+      "line": 17,
+      "start": 1223,
+      "end": 1253,
+      "original": "if(!(e instanceof InputError))",
+      "replacement": "if(false)",
+      "index": 93,
+      "outcome": "killed",
+      "selector": [
+        "mapping",
+        "report",
+        "cli-unit"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/index.mjs",
+      "line": 17,
+      "start": 1254,
+      "end": 1259,
+      "original": "throw",
+      "replacement": "return",
+      "index": 94,
+      "outcome": "killed",
+      "selector": [
+        "mapping",
+        "report",
+        "cli-unit"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/index.mjs",
+      "line": 34,
+      "start": 2078,
+      "end": 2109,
+      "original": "if(!(e instanceof BudgetError))",
+      "replacement": "if(false)",
+      "index": 99,
+      "outcome": "killed",
+      "selector": [
+        "mapping",
+        "report",
+        "cli-unit"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/index.mjs",
+      "line": 34,
+      "start": 2110,
+      "end": 2115,
+      "original": "throw",
+      "replacement": "return",
+      "index": 100,
+      "outcome": "killed",
+      "selector": [
+        "mapping",
+        "report",
+        "cli-unit"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 15,
+      "start": 337,
+      "end": 361,
+      "original": "if (value === undefined)",
+      "replacement": "if(false)",
+      "index": 101,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 16,
+      "start": 380,
+      "end": 426,
+      "original": "if (!Number.isSafeInteger(value) || value < 0)",
+      "replacement": "if(false)",
+      "index": 102,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 16,
+      "start": 427,
+      "end": 432,
+      "original": "throw",
+      "replacement": "return",
+      "index": 103,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 23,
+      "start": 668,
+      "end": 687,
+      "original": "if (match === null)",
+      "replacement": "if(false)",
+      "index": 104,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 23,
+      "start": 688,
+      "end": 693,
+      "original": "throw",
+      "replacement": "return",
+      "index": 105,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 26,
+      "start": 825,
+      "end": 843,
+      "original": "if (digits === '')",
+      "replacement": "if(false)",
+      "index": 106,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 28,
+      "start": 926,
+      "end": 956,
+      "original": "if (exponentDigits.length > 6)",
+      "replacement": "if(false)",
+      "index": 107,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/json.mjs",
+      "line": 28,
+      "start": 952,
+      "end": 953,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 108,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/json.mjs",
+      "line": 28,
+      "start": 952,
+      "end": 953,
+      "original": ">",
+      "replacement": ">=",
+      "index": 109,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 28,
+      "start": 957,
+      "end": 962,
+      "original": "throw",
+      "replacement": "return",
+      "index": 110,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 38,
+      "start": 1436,
+      "end": 1465,
+      "original": "if (typeof text !== 'string')",
+      "replacement": "if(false)",
+      "index": 111,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 38,
+      "start": 1466,
+      "end": 1471,
+      "original": "throw",
+      "replacement": "return",
+      "index": 112,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 67,
+      "start": 2202,
+      "end": 2207,
+      "original": "throw",
+      "replacement": "return",
+      "index": 116,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 72,
+      "start": 2302,
+      "end": 2324,
+      "original": "if(nodes % 1024 === 0)",
+      "replacement": "if(false)",
+      "index": 117,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 73,
+      "start": 2353,
+      "end": 2374,
+      "original": "if (depth > maxDepth)",
+      "replacement": "if(false)",
+      "index": 118,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/json.mjs",
+      "line": 73,
+      "start": 2363,
+      "end": 2364,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 119,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/json.mjs",
+      "line": 73,
+      "start": 2363,
+      "end": 2364,
+      "original": ">",
+      "replacement": ">=",
+      "index": 120,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 73,
+      "start": 2375,
+      "end": 2380,
+      "original": "throw",
+      "replacement": "return",
+      "index": 121,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 112,
+      "start": 3382,
+      "end": 3402,
+      "original": "if (number === null)",
+      "replacement": "if(false)",
+      "index": 136,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 112,
+      "start": 3403,
+      "end": 3408,
+      "original": "throw",
+      "replacement": "return",
+      "index": 137,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 132,
+      "start": 4049,
+      "end": 4083,
+      "original": "if(!(bytes instanceof Uint8Array))",
+      "replacement": "if(false)",
+      "index": 143,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 132,
+      "start": 4084,
+      "end": 4089,
+      "original": "throw",
+      "replacement": "return",
+      "index": 144,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 138,
+      "start": 4377,
+      "end": 4391,
+      "original": "if(i%8192===0)",
+      "replacement": "if(false)",
+      "index": 151,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 140,
+      "start": 4431,
+      "end": 4443,
+      "original": "if(inString)",
+      "replacement": "if(false)",
+      "index": 152,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 140,
+      "start": 4445,
+      "end": 4457,
+      "original": "if(c==='\\\\')",
+      "replacement": "if(false)",
+      "index": 153,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 140,
+      "start": 4468,
+      "end": 4479,
+      "original": "if(c==='\"')",
+      "replacement": "if(false)",
+      "index": 154,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 140,
+      "start": 4496,
+      "end": 4504,
+      "original": "continue",
+      "replacement": "break",
+      "index": 155,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 141,
+      "start": 4510,
+      "end": 4521,
+      "original": "if(c==='\"')",
+      "replacement": "if(false)",
+      "index": 156,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 143,
+      "start": 4637,
+      "end": 4659,
+      "original": "if(c==='}' || c===']')",
+      "replacement": "if(false)",
+      "index": 163,
+      "outcome": "killed",
+      "selector": [
+        "json",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 156,
+      "start": 5044,
+      "end": 5070,
+      "original": "if(info.size>LIMITS.bytes)",
+      "replacement": "if(false)",
+      "index": 166,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/json.mjs",
+      "line": 156,
+      "start": 5056,
+      "end": 5057,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 167,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 164,
+      "start": 5435,
+      "end": 5458,
+      "original": "if(length>LIMITS.bytes)",
+      "replacement": "if(false)",
+      "index": 171,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/json.mjs",
+      "line": 164,
+      "start": 5444,
+      "end": 5445,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 172,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 164,
+      "start": 5459,
+      "end": 5464,
+      "original": "throw",
+      "replacement": "return",
+      "index": 174,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/json.mjs",
+      "line": 171,
+      "start": 5798,
+      "end": 5808,
+      "original": "if(handle)",
+      "replacement": "if(false)",
+      "index": 178,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "ordering",
+      "file": "src/mapping.mjs",
+      "line": 8,
+      "start": 499,
+      "end": 509,
+      "original": "(a,b)=>a-b",
+      "replacement": "(a,b)=>b-a",
+      "index": 191,
+      "outcome": "killed",
+      "selector": [
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/mapping.mjs",
+      "line": 22,
+      "start": 1399,
+      "end": 1407,
+      "original": "continue",
+      "replacement": "break",
+      "index": 194,
+      "outcome": "killed",
+      "selector": [
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "ordering",
+      "file": "src/mapping.mjs",
+      "line": 44,
+      "start": 2689,
+      "end": 2700,
+      "original": "byCodeUnit(",
+      "replacement": "new Intl.Collator('en').compare(",
+      "index": 205,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "ordering",
+      "file": "src/mapping.mjs",
+      "line": 46,
+      "start": 2835,
+      "end": 2846,
+      "original": "byCodeUnit(",
+      "replacement": "new Intl.Collator('en').compare(",
+      "index": 206,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "ordering",
+      "file": "src/mapping.mjs",
+      "line": 48,
+      "start": 2949,
+      "end": 2960,
+      "original": "byCodeUnit(",
+      "replacement": "new Intl.Collator('en').compare(",
+      "index": 207,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 10,
+      "start": 649,
+      "end": 654,
+      "original": "throw",
+      "replacement": "return",
+      "index": 209,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 18,
+      "start": 966,
+      "end": 971,
+      "original": "throw",
+      "replacement": "return",
+      "index": 213,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 20,
+      "start": 1047,
+      "end": 1077,
+      "original": "if(!parentInfo?.isDirectory())",
+      "replacement": "if(false)",
+      "index": 214,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 20,
+      "start": 1078,
+      "end": 1083,
+      "original": "throw",
+      "replacement": "return",
+      "index": 215,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 23,
+      "start": 1252,
+      "end": 1273,
+      "original": "if(e.code!=='EEXIST')",
+      "replacement": "if(false)",
+      "index": 216,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 23,
+      "start": 1273,
+      "end": 1278,
+      "original": "throw",
+      "replacement": "return",
+      "index": 217,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 25,
+      "start": 1355,
+      "end": 1410,
+      "original": "if(!created?.isDirectory() || created.isSymbolicLink())",
+      "replacement": "if(false)",
+      "index": 218,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 25,
+      "start": 1410,
+      "end": 1415,
+      "original": "throw",
+      "replacement": "return",
+      "index": 219,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 30,
+      "start": 1551,
+      "end": 1566,
+      "original": "if(next===path)",
+      "replacement": "if(false)",
+      "index": 220,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 30,
+      "start": 1566,
+      "end": 1571,
+      "original": "throw",
+      "replacement": "return",
+      "index": 221,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 36,
+      "start": 1706,
+      "end": 1796,
+      "original": "if(existing && identities.some(input=>input.dev===existing.dev&&input.ino===existing.ino))",
+      "replacement": "if(false)",
+      "index": 222,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 36,
+      "start": 1797,
+      "end": 1802,
+      "original": "throw",
+      "replacement": "return",
+      "index": 223,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 51,
+      "start": 2428,
+      "end": 2518,
+      "original": "if(!Array.isArray(artifacts) || new Set(artifacts.map(a=>a.name)).size!==artifacts.length)",
+      "replacement": "if(false)",
+      "index": 226,
+      "outcome": "killed",
+      "selector": [
+        "output",
+        "cli-unit"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 51,
+      "start": 2518,
+      "end": 2523,
+      "original": "throw",
+      "replacement": "return",
+      "index": 227,
+      "outcome": "killed",
+      "selector": [
+        "output",
+        "cli-unit"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/output.mjs",
+      "line": 53,
+      "start": 2587,
+      "end": 2673,
+      "original": "if(!ARTIFACT_NAMES.includes(artifact.name) || !(artifact.bytes instanceof Uint8Array))",
+      "replacement": "if(false)",
+      "index": 228,
+      "outcome": "killed",
+      "selector": [
+        "output",
+        "cli-unit"
+      ]
+    },
+    {
+      "category": "semantic",
+      "file": "src/output.mjs",
+      "line": 61,
+      "start": 3126,
+      "end": 3143,
+      "original": "constants.O_EXCL|",
+      "replacement": "",
+      "index": 230,
+      "outcome": "killed",
+      "selector": [
+        "output",
+        "cli-unit"
+      ]
+    },
+    {
+      "category": "semantic",
+      "file": "src/output.mjs",
+      "line": 61,
+      "start": 3142,
+      "end": 3163,
+      "original": "|constants.O_NOFOLLOW",
+      "replacement": "",
+      "index": 231,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/report.mjs",
+      "line": 70,
+      "start": 4513,
+      "end": 4569,
+      "original": "if(!['@dataset','@activities','@output'].includes(file))",
+      "replacement": "if(false)",
+      "index": 296,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/report.mjs",
+      "line": 70,
+      "start": 4570,
+      "end": 4575,
+      "original": "throw",
+      "replacement": "return",
+      "index": 297,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "ordering",
+      "file": "src/report.mjs",
+      "line": 76,
+      "start": 5038,
+      "end": 5049,
+      "original": "byCodeUnit(",
+      "replacement": "new Intl.Collator('en').compare(",
+      "index": 299,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "ordering",
+      "file": "src/report.mjs",
+      "line": 76,
+      "start": 5083,
+      "end": 5094,
+      "original": "byCodeUnit(",
+      "replacement": "new Intl.Collator('en').compare(",
+      "index": 300,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "ordering",
+      "file": "src/report.mjs",
+      "line": 76,
+      "start": 5134,
+      "end": 5145,
+      "original": "byCodeUnit(",
+      "replacement": "new Intl.Collator('en').compare(",
+      "index": 301,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "semantic",
+      "file": "src/report.mjs",
+      "line": 77,
+      "start": 5184,
+      "end": 5207,
+      "original": "mappedActivities===0 ||",
+      "replacement": "",
+      "index": 302,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/text.mjs",
+      "line": 5,
+      "start": 351,
+      "end": 352,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 304,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/write-guard.mjs",
+      "line": 24,
+      "start": 870,
+      "end": 898,
+      "original": "if (error.code === 'ENOENT')",
+      "replacement": "if(false)",
+      "index": 306,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/write-guard.mjs",
+      "line": 25,
+      "start": 920,
+      "end": 925,
+      "original": "throw",
+      "replacement": "return",
+      "index": 307,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/write-guard.mjs",
+      "line": 28,
+      "start": 1057,
+      "end": 1077,
+      "original": "if (seen.has(named))",
+      "replacement": "if(false)",
+      "index": 308,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/write-guard.mjs",
+      "line": 34,
+      "start": 1343,
+      "end": 1348,
+      "original": "throw",
+      "replacement": "return",
+      "index": 311,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/write-guard.mjs",
+      "line": 37,
+      "start": 1429,
+      "end": 1434,
+      "original": "throw",
+      "replacement": "return",
+      "index": 312,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/write-guard.mjs",
+      "line": 96,
+      "start": 4618,
+      "end": 4669,
+      "original": "if (existing !== null && existing.isSymbolicLink())",
+      "replacement": "if(false)",
+      "index": 315,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/write-guard.mjs",
+      "line": 111,
+      "start": 5131,
+      "end": 5136,
+      "original": "throw",
+      "replacement": "return",
+      "index": 319,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/write-guard.mjs",
+      "line": 128,
+      "start": 5765,
+      "end": 5802,
+      "original": "if (inputTarget === namedDestination)",
+      "replacement": "if(false)",
+      "index": 323,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/write-guard.mjs",
+      "line": 151,
+      "start": 6591,
+      "end": 6599,
+      "original": "continue",
+      "replacement": "break",
+      "index": 328,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    }
+  ],
+  "counts": {
+    "killed": 29,
+    "survived": 51
+  },
+  "sourceRevision": "68997cf",
+  "tests": "Frozen snapshot at invocation with the added gap regressions; quoted-prefix depth assertions were added later and have a separate retest receipt"
+}

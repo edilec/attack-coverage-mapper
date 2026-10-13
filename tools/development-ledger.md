@@ -1,0 +1,35 @@
+# Implementation ledger — plan: 2026-10-13-attack-coverage-mapper-implementation.md (separate planning workspace)
+Authorization: Human update received through controller authorizes local implementation, independent Git init, tests and truthful local commits; no remote creation/push/publication/website work.
+Ruling: Work directly in the requested brand-new independent repository on main — explicit exact-directory instruction supplies isolation and main-branch consent — cost if wrong: local branch rename only.
+Pre-flight 1→2: limits/budget/finding signatures consistent.
+Pre-flight 2→3: full index and compiled row types consistent; private refs stay internal.
+Pre-flight 3→4: global and tactic arrays consistent; unusable metadata must omit layer.
+Pre-flight 1/4→5: byte artifacts and copied guard interfaces consistent.
+Pre-flight 1/3/4/5→6: shared budget and reader outcomes require analyzeReadResults helper assigned to Task 6.
+Pre-flight 6→7: CLI/scripts/package allowlist consistent; all publication remains separate.
+Task 1: complete — npm run check: 16 pass, 0 fail; focused restore run: 14 pass, 0 fail. Fatal decoding, tightened depth and collator mutations caught.
+Origin linked locally to controller-verified empty repository; no remote access or push.
+Task 2: complete — contracts red for absent compiler then full offline tests green. Corrected test URL padding after measuring prefix at 25 units; product 512-unit guard stood. Synthetic fixed fixtures hashed.
+Task 3: complete — mapping/report RED then npm test green; focused collection-findings regression exposed spread ordering and now passes. Ruling: implement analyzeReadResults in Task 3 instead of Task 6 — one orchestration path — cost if wrong: internal helper move.
+Task 4: complete — exports RED for absent renderer then full offline suite green; exact CSV, required layer fields/domain/version, all score/style semantics and export N/N+1 pinned.
+Task 5: complete — write/output RED then full npm test green; direct/symlink/dangling/hard-link/parent guard holes, permitted directories, exclusive writes and injected partial export failures exercised.
+Task 6: complete — real CLI red then full offline suite green; default performance clock receiver regression RED→GREEN. No network, push, PR, package publication or website changes.
+Task 7: Ruling: use legal a-b/a0/aa tactic slugs for real ordering discrimination — pointer 10/2 does not differ under default nonnumeric collation — cost if wrong: test-only fixture adjustment. Corrected fast CLI selectors so unrelated missing options cannot mask refusal.
+Task 7: Ruling: refuse missing/uninspectable case-variant input target basenames within the same real parent — actual Mac probe materialized an input alias despite exit 2 — cost if wrong: conservative refusal for a missing case-variant input on case-sensitive filesystems; existing distinct files stay allowed. Case alias regression RED→GREEN.
+Task 7: Ruling: run all in-process behavior selectors for each mechanical mutant and real CLI integration once on final candidate — repeated unchanged process adapters dominated audit time and produced load timeouts — cost if wrong: mutation evidence excludes per-mutant subprocess startup; final real CLI and package gates still required. Initial partial sweeps retained as partial, not complete.
+Clock-stage provenance regression RED→GREEN: shared budget scoped to each input role during reads and parsing.
+Cyclic input/report-shape regression RED→GREEN: classify unresolved input protection separately from unsafe destination, preserve incomplete source report, and refuse artifacts. Root input cycles no longer become empty-stdout usage errors.
+Final review: one fresh read-only whole-range reviewer, a48e502..7c6104d; Important malformed duplicate note refs accepted into detected counts. No Critical or Minor findings.
+Final: fixed malformed duplicate references — contract and CLI artifact regressions RED→GREEN; affected contract/mapping/report/export/CLI selectors 86/86. All safe own refs are registered before filtering malformed note declarations.
+Final: Ruling: honor normalized subsets, unauthenticated declared provenance, and analyst-declared note availability — intentional approved boundaries, not general STIX/evidence verification — cost if wrong: additional adapters/verification in a later version.
+Final: Ruling: retain cooperative deadline, operator-controlled ancestor directories and non-atomic partial outputs — approved limitations documented in README/security — cost if wrong: workers and atomic/staged filesystem redesign.
+Final: Ruling: review excluded mutation completion, package/live Navigator and publication readiness — finish offline audit/package checks here; live/hosted/publication work stays outside authorization — cost if wrong: follow-up acceptance before publication.
+Task 7: Corrected earlier ordering ruling: measured en collation for a-b/a0/aa matches code-unit order. These legal fixtures are lexical controls, not collator discriminators; surviving sort-site mutations remain unproven. General byCodeUnit/metadata tests have real Z/a/hyphen/underscore counterexamples.
+Task 7: Ruling: retain optional standard-library Python mutation driver and exact machine-readable audit tables as developer evidence — no product dependency or shipped tooling — cost if wrong: remove developer runner later.
+Task 7: Ruling: record surviving mutations as test gaps instead of asserting exhaustive defense coverage; meaningful record-continuation, color, ordinals, parser, failure-propagation and exclusive-creation gaps receive added tests/retests — cost if wrong: residual unproven fault/race branches require later audit before broader readiness claims.
+Final: fixed malformed duplicate note refs — RED→GREEN; full npm run check 169/169 pass, 0 fail, 0 skip. Quoted-prefix depth assertions added after that gate; unchanged product digest and affected json/report checks 18/18 pass.
+Task 7: Initial offline npm pack inspected 27 allowlisted entries; extracted pass/fail/incomplete exited 0/1/2, exact JSON/stdout match, layer subset and library smoke passed. Final documentation-inclusive package inspection remains.
+Task 7: complete — frozen baseline 330 mutations (243 caught/87 survived); changed contracts 47 retests; other survivors 80 retests; quoted-depth 2 retests; final 331-entry combined evidence: 281 caught, 50 unproven, no timeout/invalid. This is source-matched carried evidence, not a new full 331-mutant sweep.
+Task 7: Final offline package inspected 32 allowlisted entries; extracted examples 0/1/2 and library smoke passed under denial. Exact tarball hash and manifest retained outside package allowlist; owned archive/extraction deleted.
+Task 7: Developer mutation runner smoke caught the reviewed duplicate-ref mutation; outside-source inventory was refused before reading. Product bytes unchanged.
+Finish: keep local main as explicitly authorized, no merge/push/PR/publication; normal independent repository, no extra worktree. Final evidence and sanitized ledger retained in Git before this plan scratch cleanup.

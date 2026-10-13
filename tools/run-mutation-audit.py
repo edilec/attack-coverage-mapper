@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
@@ -35,11 +36,19 @@ def main():
     chosen = {int(x) for x in args.indices.split(',')} if args.indices else None
     entries = [(i, e) for i, e in enumerate(inventory['entries'], 1)
                if (not args.file or e['file'] in args.file) and (not chosen or i in chosen)]
-    originals = {e['file']: (root / e['file']).read_text() for _, e in entries}
     for _, entry in entries:
         if (entry['file'] not in {f'src/{name}.mjs' for name in SELECTORS}
                 and entry['file'] != 'bin/attack-coverage-mapper.mjs'):
             parser.error('Inventory names a file outside the owned product source')
+    originals = {e['file']: (root / e['file']).read_text() for _, e in entries}
+    generated = subprocess.run([args.node, 'tools/mutation-inventory.mjs'], cwd=root,
+                               capture_output=True, text=True, check=True)
+    def key(entry):
+        return tuple(entry[k] for k in ['file', 'start', 'end', 'original', 'replacement'])
+    permitted = {key(e) for e in json.loads(generated.stdout)['entries']}
+    for _, entry in entries:
+        if key(entry) not in permitted:
+            parser.error('Only mechanically enumerated current-source mutations are supported')
         if originals[entry['file']][entry['start']:entry['end']] != entry['original']:
             parser.error('Inventory span differs from the current source; regenerate it')
     outcomes = []
@@ -62,7 +71,12 @@ def main():
         for index, entry in entries:
             path = copy / entry['file']
             original = originals[entry['file']]
-            path.write_text(original[:entry['start']] + entry['replacement'] + original[entry['end']:])
+            mutant = original[:entry['start']] + entry['replacement'] + original[entry['end']:]
+            prohibited = ['node:net', 'node:http', 'node:https', 'node:tls', 'node:dgram',
+                          'node:dns', 'node:child_process', 'node:vm', 'undici']
+            if any(token in mutant for token in prohibited) or re.search(r'\b(?:fetch|eval|import)\s*\(|\bnew\s+Function\s*\(', mutant):
+                parser.error('Mutant has a prohibited capability; refused before execution')
+            path.write_text(mutant)
             result = dict(entry, index=index)
             tests = SELECTORS[Path(entry['file']).stem]
             try:

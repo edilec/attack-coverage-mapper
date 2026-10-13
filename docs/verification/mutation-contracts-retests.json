@@ -1,0 +1,839 @@
+{
+  "complete": true,
+  "scope": "Owning selectors followed by all compact in-process selectors for silent candidates; no per-mutant subprocess CLI suite",
+  "sourceSha256": {
+    "src/contracts.mjs": "6c80db48401e96f9699e8b291a17ebf67bca335fe440d07ff2c30ab4da2d06c8"
+  },
+  "selectors": {
+    "limits": [
+      "text-report",
+      "report"
+    ],
+    "text": [
+      "text-report",
+      "exports"
+    ],
+    "report": [
+      "text-report",
+      "report",
+      "mapping",
+      "docs-package",
+      "cli-unit"
+    ],
+    "json": [
+      "json",
+      "report"
+    ],
+    "contracts": [
+      "contracts",
+      "mapping",
+      "report"
+    ],
+    "mapping": [
+      "mapping",
+      "report"
+    ],
+    "index": [
+      "mapping",
+      "report",
+      "cli-unit"
+    ],
+    "exports": [
+      "exports",
+      "cli-unit"
+    ],
+    "write-guard": [
+      "write-guard",
+      "output"
+    ],
+    "output": [
+      "output",
+      "cli-unit"
+    ],
+    "cli": [
+      "cli-unit"
+    ],
+    "attack-coverage-mapper": [
+      "cli-unit"
+    ]
+  },
+  "compactSelectors": [
+    "json",
+    "text-report",
+    "contracts",
+    "mapping",
+    "report",
+    "exports",
+    "write-guard",
+    "output",
+    "cli-unit",
+    "docs-package"
+  ],
+  "timeoutSeconds": 30,
+  "entries": [
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 9,
+      "start": 562,
+      "end": 633,
+      "original": "if(!isSafeField(raw,512) || !/^https:\\/\\/[A-Za-z0-9._/-]+$/u.test(raw))",
+      "replacement": "if(false)",
+      "index": 19,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 11,
+      "start": 703,
+      "end": 773,
+      "original": "if(url.username || url.password || url.search || url.hash || url.port)",
+      "replacement": "if(false)",
+      "index": 20,
+      "outcome": "survived",
+      "selector": [
+        "json",
+        "text-report",
+        "contracts",
+        "mapping",
+        "report",
+        "exports",
+        "write-guard",
+        "output",
+        "cli-unit",
+        "docs-package"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 19,
+      "start": 1237,
+      "end": 1392,
+      "original": "if(!keys(raw,['schemaVersion','domain','version','sourceUrl','techniques'],['schemaVersion','domain','sourceUrl','techniques']) || raw.schemaVersion!=='1')",
+      "replacement": "if(false)",
+      "index": 21,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 22,
+      "start": 1471,
+      "end": 1525,
+      "original": "if(['enterprise','mobile','ics'].includes(raw.domain))",
+      "replacement": "if(false)",
+      "index": 22,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 23,
+      "start": 1593,
+      "end": 1626,
+      "original": "if(!Object.hasOwn(raw,'version'))",
+      "replacement": "if(false)",
+      "index": 23,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 24,
+      "start": 1676,
+      "end": 1781,
+      "original": "if(typeof raw.version==='string' && raw.version.length<=16 && /^[0-9]+(?:\\.[0-9]+)?$/u.test(raw.version))",
+      "replacement": "if(false)",
+      "index": 24,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 26,
+      "start": 1854,
+      "end": 1882,
+      "original": "if(sourceUrl(raw.sourceUrl))",
+      "replacement": "if(false)",
+      "index": 25,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 27,
+      "start": 1959,
+      "end": 1993,
+      "original": "if(!Array.isArray(raw.techniques))",
+      "replacement": "if(false)",
+      "index": 26,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 28,
+      "start": 2075,
+      "end": 2118,
+      "original": "if(raw.techniques.length>LIMITS.techniques)",
+      "replacement": "if(false)",
+      "index": 27,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 28,
+      "start": 2099,
+      "end": 2100,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 28,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 28,
+      "start": 2099,
+      "end": 2100,
+      "original": ">",
+      "replacement": ">=",
+      "index": 29,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 29,
+      "start": 2210,
+      "end": 2239,
+      "original": "if(raw.techniques.length===0)",
+      "replacement": "if(false)",
+      "index": 30,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 33,
+      "start": 2451,
+      "end": 2831,
+      "original": "if(!keys(row,['id','parentId','revoked','deprecated','tactics']) || !isId(row.id) || !(row.parentId===null || isId(row.parentId)) || typeof row.revoked!=='boolean' || typeof row.deprecated!=='boolean' || !Array.isArray(row.tactics) || row.tactics.length<1 || row.tactics.length>LIMITS.tactics || row.tactics.some(t=>!isTactic(t)) || new Set(row.tactics).size!==row.tactics.length)",
+      "replacement": "if(false)",
+      "index": 31,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 33,
+      "start": 2728,
+      "end": 2729,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 32,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 33,
+      "start": 2728,
+      "end": 2729,
+      "original": ">",
+      "replacement": ">=",
+      "index": 33,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 34,
+      "start": 2871,
+      "end": 2879,
+      "original": "continue",
+      "replacement": "break",
+      "index": 34,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 36,
+      "start": 2890,
+      "end": 2916,
+      "original": "if(!positions.has(row.id))",
+      "replacement": "if(false)",
+      "index": 35,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 40,
+      "start": 3095,
+      "end": 3115,
+      "original": "if(indexes.length>1)",
+      "replacement": "if(false)",
+      "index": 36,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 40,
+      "start": 3112,
+      "end": 3113,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 37,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 40,
+      "start": 3112,
+      "end": 3113,
+      "original": ">",
+      "replacement": ">=",
+      "index": 38,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 44,
+      "start": 3311,
+      "end": 3414,
+      "original": "if(row.parentId!==parent || (parent!==null && (!byId.has(parent) || byId.get(parent).parentId!==null)))",
+      "replacement": "if(false)",
+      "index": 39,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 56,
+      "start": 3923,
+      "end": 4142,
+      "original": "if(!keys(raw,['schemaVersion','inventoryComplete','sourceNotes','activities']) || raw.schemaVersion!=='1' || typeof raw.inventoryComplete!=='boolean' || !Array.isArray(raw.sourceNotes) || !Array.isArray(raw.activities))",
+      "replacement": "if(false)",
+      "index": 40,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 60,
+      "start": 4249,
+      "end": 4271,
+      "original": "if(!inventoryComplete)",
+      "replacement": "if(false)",
+      "index": 41,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 61,
+      "start": 4323,
+      "end": 4362,
+      "original": "if(raw.sourceNotes.length>LIMITS.notes)",
+      "replacement": "if(false)",
+      "index": 42,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 61,
+      "start": 4348,
+      "end": 4349,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 43,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 61,
+      "start": 4348,
+      "end": 4349,
+      "original": ">",
+      "replacement": ">=",
+      "index": 44,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 62,
+      "start": 4426,
+      "end": 4469,
+      "original": "if(raw.activities.length>LIMITS.activities)",
+      "replacement": "if(false)",
+      "index": 45,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 62,
+      "start": 4450,
+      "end": 4451,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 46,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 62,
+      "start": 4450,
+      "end": 4451,
+      "original": ">",
+      "replacement": ">=",
+      "index": 47,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 66,
+      "start": 4692,
+      "end": 4773,
+      "original": "if(object(note) && Object.hasOwn(note,'ref') && isSafeField(note.ref,LIMITS.ref))",
+      "replacement": "if(false)",
+      "index": 48,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 67,
+      "start": 4782,
+      "end": 4805,
+      "original": "if(!refs.has(note.ref))",
+      "replacement": "if(false)",
+      "index": 49,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 70,
+      "start": 4871,
+      "end": 4933,
+      "original": "if(!keys(note,['ref','available','note'],['ref','available']))",
+      "replacement": "if(false)",
+      "index": 50,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 70,
+      "start": 4969,
+      "end": 4977,
+      "original": "continue",
+      "replacement": "break",
+      "index": 51,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 71,
+      "start": 4983,
+      "end": 5020,
+      "original": "if(!isSafeField(note.ref,LIMITS.ref))",
+      "replacement": "if(false)",
+      "index": 52,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 71,
+      "start": 5063,
+      "end": 5071,
+      "original": "continue",
+      "replacement": "break",
+      "index": 53,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 72,
+      "start": 5077,
+      "end": 5211,
+      "original": "if(typeof note.available!=='boolean' || (Object.hasOwn(note,'note') && (typeof note.note!=='string' || note.note.length>LIMITS.note)))",
+      "replacement": "if(false)",
+      "index": 54,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 72,
+      "start": 5196,
+      "end": 5197,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 55,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 72,
+      "start": 5196,
+      "end": 5197,
+      "original": ">",
+      "replacement": ">=",
+      "index": 56,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 72,
+      "start": 5247,
+      "end": 5255,
+      "original": "continue",
+      "replacement": "break",
+      "index": 57,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 75,
+      "start": 5359,
+      "end": 5379,
+      "original": "if(indexes.length>1)",
+      "replacement": "if(false)",
+      "index": 58,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 75,
+      "start": 5376,
+      "end": 5377,
+      "original": ">",
+      "replacement": ">1+",
+      "index": 59,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "bound",
+      "file": "src/contracts.mjs",
+      "line": 75,
+      "start": 5376,
+      "end": 5377,
+      "original": ">",
+      "replacement": ">=",
+      "index": 60,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 79,
+      "start": 5517,
+      "end": 5546,
+      "original": "if(raw.activities.length===0)",
+      "replacement": "if(false)",
+      "index": 61,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 82,
+      "start": 5722,
+      "end": 5835,
+      "original": "if(!keys(row,['sourceNoteRef','techniqueIds','detection','tactic'],['sourceNoteRef','techniqueIds','detection']))",
+      "replacement": "if(false)",
+      "index": 62,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 82,
+      "start": 5863,
+      "end": 5871,
+      "original": "continue",
+      "replacement": "break",
+      "index": 63,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 89,
+      "start": 6369,
+      "end": 6376,
+      "original": "if(!ok)",
+      "replacement": "if(false)",
+      "index": 64,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    },
+    {
+      "category": "guard",
+      "file": "src/contracts.mjs",
+      "line": 91,
+      "start": 6437,
+      "end": 6446,
+      "original": "if(valid)",
+      "replacement": "if(false)",
+      "index": 65,
+      "outcome": "killed",
+      "selector": [
+        "contracts",
+        "mapping",
+        "report"
+      ]
+    }
+  ],
+  "counts": {
+    "killed": 46,
+    "survived": 1
+  },
+  "revision": "68997cf"
+}

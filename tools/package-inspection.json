@@ -1,0 +1,89 @@
+{
+  "package": "attack-coverage-mapper",
+  "version": "0.1.0",
+  "offline": true,
+  "ignoreScripts": true,
+  "fileCount": 32,
+  "entries": [
+    "package/CHANGELOG.md",
+    "package/LICENSE",
+    "package/README.md",
+    "package/bin/attack-coverage-mapper.mjs",
+    "package/docs/input-format.md",
+    "package/docs/navigator-format.md",
+    "package/docs/rules.md",
+    "package/docs/security.md",
+    "package/docs/verification.md",
+    "package/docs/verification/checks.json",
+    "package/docs/verification/mutation-baseline.json",
+    "package/docs/verification/mutation-contracts-retests.json",
+    "package/docs/verification/mutation-inventory.json",
+    "package/docs/verification/mutation-outcomes.json",
+    "package/docs/verification/mutation-quoted-depth-retests.json",
+    "package/docs/verification/mutation-survivor-retests.json",
+    "package/examples/dataset.json",
+    "package/examples/fail.json",
+    "package/examples/incomplete.json",
+    "package/examples/pass.json",
+    "package/package.json",
+    "package/src/cli.mjs",
+    "package/src/contracts.mjs",
+    "package/src/exports.mjs",
+    "package/src/index.mjs",
+    "package/src/json.mjs",
+    "package/src/limits.mjs",
+    "package/src/mapping.mjs",
+    "package/src/output.mjs",
+    "package/src/report.mjs",
+    "package/src/text.mjs",
+    "package/src/write-guard.mjs"
+  ],
+  "size": 55165,
+  "unpackedSize": 449680,
+  "sha256": "b8d19c1905632e9972a49641f5be7fbe21bff7770e6f85e78ed0a1498b00cf06",
+  "examples": [
+    {
+      "example": "pass",
+      "exit": 0,
+      "status": "pass",
+      "artifacts": [
+        "coverage.csv",
+        "coverage.json",
+        "navigator-layer.json"
+      ],
+      "coverageJsonEqualsStdout": true,
+      "navigatorSubsetValidated": true
+    },
+    {
+      "example": "fail",
+      "exit": 1,
+      "status": "fail",
+      "artifacts": [
+        "coverage.csv",
+        "coverage.json",
+        "navigator-layer.json"
+      ],
+      "coverageJsonEqualsStdout": true,
+      "navigatorSubsetValidated": true
+    },
+    {
+      "example": "incomplete",
+      "exit": 2,
+      "status": "incomplete",
+      "artifacts": [
+        "coverage.csv",
+        "coverage.json",
+        "navigator-layer.json"
+      ],
+      "coverageJsonEqualsStdout": true,
+      "navigatorSubsetValidated": true
+    }
+  ],
+  "librarySmokePassed": true,
+  "temporaryArchiveAndExtractionRemoved": true,
+  "productDigest": "ba3b808d40a79e83096dbdce0c4af128748e17119406b2269154c533e734e398",
+  "sourceRevision": "68997cf",
+  "date": "2026-10-13",
+  "node": "v24.14.0",
+  "npm": "11.9.0"
+}

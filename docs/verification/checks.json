@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-13",
+  "sourceRevision": "68997cf",
+  "node": "v24.14.0",
+  "npm": "11.9.0",
+  "environment": {
+    "npm_config_offline": "true",
+    "npm_config_update_notifier": "false"
+  },
+  "checks": [
+    {
+      "command": "npm run check",
+      "tests": 169,
+      "passed": 169,
+      "failed": 0,
+      "skipped": 0,
+      "exit": 0
+    },
+    {
+      "command": "node --import ./test/support/deny-network.mjs --test test/json.test.mjs test/report.test.mjs",
+      "reason": "Added quoted-prefix depth assertions after the broad gate; product source unchanged",
+      "tests": 18,
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "exit": 0
+    }
+  ],
+  "productDigest": {
+    "algorithm": "sha256",
+    "method": "Sorted src/*.mjs, bin/*.mjs and package.json; each UTF-8 relative path then NUL, exact bytes then NUL",
+    "files": 13,
+    "value": "ba3b808d40a79e83096dbdce0c4af128748e17119406b2269154c533e734e398"
+  },
+  "freshReview": {
+    "base": "a48e5029c56b3a21b5808360416b70c20bd0e9ec",
+    "head": "7c6104d7f7deca6da467c1523ebe840895fa9df1",
+    "readOnly": true,
+    "critical": 0,
+    "important": 1,
+    "minor": 0,
+    "finding": "Malformed duplicate note refs still supported detection counts",
+    "fixRevision": "68997cf",
+    "regressionCycle": "RED to GREEN in contract and CLI artifact tests, followed by 169-test full check",
+    "secondReview": false
+  },
+  "publication": {
+    "push": false,
+    "pullRequest": false,
+    "packagePublish": false,
+    "tag": false,
+    "release": false,
+    "websiteEdit": false,
+    "catalogEdit": false
+  }
+}

@@ -72,6 +72,9 @@ test('escaped delimiter text inside strings does not consume nesting budget',()=
   const note='\\"'+ '['.repeat(17)+'\\'+']'.repeat(17)
   assert.deepEqual(parse(JSON.stringify({note})),{note})
   assert.deepEqual(parse(JSON.stringify(Array.from({length:17},()=>[]))),Array.from({length:17},()=>[]))
+  const prefixed=depth=>' {"note":"quoted text","nested":'+ '['.repeat(depth)+']'.repeat(depth)+'}'
+  assert.doesNotThrow(()=>parse(prefixed(15)))
+  assert.throws(()=>parse(prefixed(16)),e=>e.code==='depth-limit')
   let checks=0
   const budget={check(){if(++checks===3)throw Error('stopped')}}
   assert.throws(()=>parseJsonBytes(Buffer.from(JSON.stringify({note:'a'.repeat(20000)})),budget),/stopped/u)
